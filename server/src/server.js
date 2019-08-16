@@ -1,11 +1,11 @@
 const express = require('express');
-const conn = require('./config/db');
+const db = require('./config/db');
 
 // Initiliase an express server
 const app = express();
 
 //Initialize db connection
-conn();
+db.conn();
 
 //Initialize json parser
 app.use(express.json({ extended: false }));
@@ -20,4 +20,4 @@ app.use('/api/walls', require('./crag/apis/walls'));
 
 // Startup App
 const port = process.env.PORT || 4000;
-app.listen(port, () => console.log('server started on port: ${port}'));
+app.listen(port, () => console.log(`server started on port: ${port}`));

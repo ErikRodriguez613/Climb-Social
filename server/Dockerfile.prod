@@ -1,5 +1,5 @@
 # No bash, can still use once confident
-FROM node:alpine
+FROM node:latest
 
 RUN npm install -g nodemon
 

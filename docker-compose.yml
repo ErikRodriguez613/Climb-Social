@@ -52,10 +52,15 @@ services:
     volumes:
       - climb-social-dbdata:/data/db
   redis:
-    image: redis
+    image: redis:latest
     container_name: ${REDISCACHENAME}
     expose:
       - 6379
+    entrypoint: redis-server --appendonly yes
+    restart: always
+    volumes:
+      - ../data/redis:/data
+
 # Add this to include data volume for mongo
 volumes:
   ? climb-social-dbdata
