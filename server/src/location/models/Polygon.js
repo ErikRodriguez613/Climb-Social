@@ -9,7 +9,7 @@ const PolygonSchema = new Schema({
     required: true
   },
   coordinates: {
-    type: [[[Number]]],
+    type: [[[[Number]]]],
     required: true
   }
 });

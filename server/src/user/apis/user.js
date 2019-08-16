@@ -19,6 +19,11 @@ router.post(
         errorMessage: 'Email is required',
         negated: true,
         options: { ignore_whitespace: true }
+      },
+      normalizeEmail: {
+        options: {
+          all_lowercase: true
+        }
       }
     },
     firstName: {
@@ -48,6 +53,12 @@ router.post(
       isLength: {
         errorMessage: 'Password must be at least 8 chars long',
         options: { min: 8 }
+      },
+      matches: {
+        errorMessage:
+          'Password must contain a lowercase letter, uppercase letter, number, and a special symbol (!@#$%^&*)',
+        options:
+          '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\\$%\\^&*])(?=.{8,})'
       }
     },
     city: {
@@ -111,9 +122,9 @@ router.post(
         lastName,
         email,
         password,
-        city,
-        state,
-        country
+        city.toLowerCase(),
+        state.toLowerCase(),
+        country.toLowerCase()
       );
       return res.send('User registered');
     } catch (error) {
