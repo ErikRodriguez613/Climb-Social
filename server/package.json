@@ -1,7 +1,7 @@
 {
-  "name": "board-server",
+  "name": "climb-social-server",
   "version": "1.0.0",
-  "description": "An apollo-express server for the whiteboard app",
+  "description": "An express server for climb social",
   "main": "index.js",
   "scripts": {
     "lint": "eslint --fix src/**",
@@ -21,16 +21,22 @@
     "express",
     "react"
   ],
-  "author": "Josh Cuneo",
+  "author": "Erik Rodriguez",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/joshdcuneo/board/issues"
   },
   "homepage": "https://github.com/joshdcuneo/board#readme",
   "dependencies": {
-    "concurrently": "^3.6.1",
-    "express": "^4.16.3",
-    "mongoose": "^5.2.7"
+    "concurrently": "^4.1.0",
+    "bcryptjs": "^2.4.3",
+    "config": "^3.1.0",
+    "express": "^4.16.4",
+    "express-validator": "^5.3.1",
+    "gravatar": "^1.8.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.5.1",
+    "request": "^2.88.0"
   },
   "devDependencies": {
     "nodemon": "^1.18.3"

@@ -1,0 +1,94 @@
+[Walls]
+*id {label: "varchar ,not null"}
+description
+long
+lat
+
+[Route_Photos]
+*id
+photo_loc
+*+route_id
+*+climber_id
+
+[Routes]
+*id
+name
+description
+*+wall_id
+*+rating_id
+*+style_id
+
+[Styles]
+*id
+name
+
+[Ratings]
+*id
+rating
+
+[Users]
+*id
+first_name
+last_name
+email
+*city_id
+
+[Cities]
+*id
+name
+*+country_id
+*+state_id {label: "varchar , null"}
+
+[States]
+*id
+name
+*+country_id
+
+[Countries]
+*id
+name
+
+[Crags]
+*id
+name
+description
+*+city_id
+
+[Crag_Photos]
+*id
+photo_loc
+*+crag_id
+*+climber_id
+
+[Wall_Photos]
+*id
+photo_loc
+*+wall_id
+*+climber_id
+
+[Routes_Climbed]
+*climber_id
+*route_id
+*user_rating_id
+
+[User_Rating]
+*id
+rating
+
+Routes 1--1 Ratings
+Routes *--1 Walls
+Walls *--1 Crags
+Walls 1--* Wall_Photos
+Users 1--* Wall_Photos
+Crags 1--1 Cities
+Cities 1--1 Countries
+Cities *--1 States
+Crags 1--* Crag_Photos
+Users 1--* Crag_Photos
+Users 1--* Route_Photos
+Countries 1--1 States
+Users *--1 Cities
+Routes 1--* Route_Photos
+Users 1--* Routes_Climbed
+Routes 1--* Styles
+Routes_Climbed *--1 User_Rating

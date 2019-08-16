@@ -1,4 +1,4 @@
-version: "3"
+version: "3.7"
 
 ## TODO work out production architecture (add nginx proxy)
 ## TODO work out testing?
@@ -8,11 +8,14 @@ services:
   ### SETUP SERVER CONTAINER
   ##########################
   server:
-    build: ./server
+    build: 
+      context: ./server
+      dockerfile: ${DOCKERFILE}
     environment:
       - MONGO_URI=mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@${MONGO_URI}
       - PORT=${PORT}
       - VIRTUAL_HOST=${SERVER_VIRTUAL_HOST}
+      - REDIS_URL=redis://${REDISCACHENAME}
     ports:
       - ${PORT}:${PORT}
     volumes:
@@ -26,7 +29,9 @@ services:
   ### SETUP CLIENT CONTAINER
   ##########################
   client:
-    build: ./client
+    build: 
+      context: ./client
+      dockerfile: ${DOCKERFILE}
     ports:
       - 80:80
     links:
@@ -49,6 +54,11 @@ services:
       # For this case we will create a Docker volume and use it instead
       # You need to run docker volume create yourproject-dbdata
       - board-dbdata:/data/db
+  redis:
+    image: redis
+    container_name: ${REDISCACHENAME}
+    expose:
+      - 6379
 # Add this to include data volume for mongo
 # Confirm this is working later
 volumes:
