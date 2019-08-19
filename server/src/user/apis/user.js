@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const user = require('../implementation/user');
-const location = require('../../location/implementation/location');
 const { checkSchema, validationResult } = require('express-validator/check');
 
 //user check schema for put and posts

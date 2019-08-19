@@ -56,7 +56,7 @@ services:
     container_name: ${REDISCACHENAME}
     expose:
       - 6379
-    entrypoint: redis-server --appendonly yes
+    entrypoint: redis-server
     restart: always
     volumes:
       - ../data/redis:/data
