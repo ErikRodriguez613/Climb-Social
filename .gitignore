@@ -3,24 +3,10 @@
 ## Server
 
 # dependencies
-/server/node_modules
-
-# Logs
-/server/logs/*
-
-# Testing
-/server/coverage
-
-## Client
-
-# dependencies
-/client/node_modules
-
-# testing
-/client/coverage
-
-# production
-/client/build
+node_modules/
+logs/*
+coverage/
+build/
 
 # misc
 .DS_Store

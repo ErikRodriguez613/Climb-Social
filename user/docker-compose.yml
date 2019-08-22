@@ -1,0 +1,38 @@
+version: "3.7"
+
+services:
+  ##########################
+  ### SETUP SERVER CONTAINER
+  ##########################
+  user-server:
+    build: 
+      context: ./
+      dockerfile: ${DOCKERFILE}
+    environment:
+      - MONGO_URI=mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@user-db:${MONGO_PORT}/${MONGO_DB_NAME}?authSource=admin
+      - PORT=${PORT}
+    ports:
+      - ${PORT}:${PORT}
+    volumes:
+      # Map client src to server src to hot reload
+      - ./:/usr/src/app
+    command: node ./index.js
+    links:
+      - user-db
+    restart: always
+  ##########################
+  ### SETUP DB CONTAINER
+  ##########################
+  user-db:
+    image: mongo:latest
+    ports:
+      - ${MONGO_PORT}:${MONGO_PORT}
+    restart: always
+    environment:
+      MONGODB_DATABASE: ${MONGO_DB_NAME}
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+    volumes:
+      - climb-social-dbdata:/data/db
+volumes:
+  ? climb-social-dbdata

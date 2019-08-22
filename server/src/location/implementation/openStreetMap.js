@@ -1,4 +1,4 @@
-const redisAxios = require('../../utils/redisAxios');
+const redisAxios = require('../../../../utils/redisAxios');
 
 var methods = {
   getCity: async function(city, state, country) {
