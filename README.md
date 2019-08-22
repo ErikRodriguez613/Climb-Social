@@ -1,6 +1,6 @@
 ## Overview
 
-This is a MERN server/client/db/cache docker container that was created from the https://github.com/joshdcuneo/mern-docker-starter repository
+This is a microserivce architecture designed to store climbing routes and their locations
 
 ## Running docker
 
